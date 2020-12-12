@@ -1,0 +1,11 @@
+{
+  "anilist": {
+    "username": ""
+  },
+  "mal": {
+    "username": "",
+    "clientId": "",
+    "clientSecret": ""
+  },
+  "syncDelay": 30
+}
