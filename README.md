@@ -10,49 +10,56 @@ _Export / Sync your Anilist to MAL._
 - NPM.
 
 ### Installation
-1. Clone / Download this repository.
-```bash
-$ git clone https://github.com/ipmanlk/anilist-to-mal-sync.git
+1. Install as a global module.
 ```
-2. Install dependencies.
-```bash
-$ cd anilist-to-mal-sync
-$ npm install
+$ npm install -g anilist-to-mal-sync
 ```
 
 ### Usage
-1. Rename ``config.sample.json`` file inside ``config`` directory to ``config.json``.
-2. Fill your details in ``config.json`` file. Instructions on getting a client id and secret can be found here: [Authorization flow for the new MAL API using OAuth 2.0](https://myanimelist.net/blog.php?eid=835707). ``syncDelay`` option is the delay in minutes when checking for updates.
-3. Build the project.
+#### Basic Setup
+1. Run ```malsync --help``` in your terminal or cmd to see help.
+2. Set basic information as below. This is required to export your anilists.  
 ```bash
-$ npm run build
+$ malsync --set-user
+
+# After setting your usernames run below command to make sure everything is working.
+
+$ malsync --update
 ```
-4. View help by running,
+
+#### Sync Setup **(Optional)**
+1. To sync your Anilist updates to MAL, you need to create a MAL Client. Follow this guide for instructions: [Authorization flow for the new MAL API using OAuth 2.0](https://myanimelist.net/blog.php?eid=835707).
+2. After creating a client, set your client id and secret as below.
+```
+$ malsync --set-client
+```
+5. Then, authorize your client.
 ```bash
-$ npm start --help
+$ malsync --login
 ```
+6. That's it. Now you can sync your Anilist updates to MAL easily.
 
 ### Examples
 - Update local Anilist cache.
 ```bash
-$ node dist/app.js --update
+$ malsync --update
 ```
-- Export anime & manga lists. _Exported XML can be found in ``exports`` directory_.
+- Export anime & manga lists.
 
 ```bash
-$ node dist/app.js --export
+$ malsync --export
 ```
 - Login to MAL **(Required for Sync feature)**.
 ```bash
-$ node dist/app.js --login
+$ malsync --login
 ```
 - Sync changes.
 ```bash
-$ node dist/app.js --sync
+$ malsync --sync
 ```
 - Monitor and Sync changes.
 ```bash
-$ node dist/app.js --watch
+$ malsync --watch
 ```
 
 
