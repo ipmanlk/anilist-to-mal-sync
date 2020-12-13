@@ -52,4 +52,4 @@ exports/*
 !exports/.gitkeep
 
 config/*
-!config/config.sample.json
+!config/.gitkeep

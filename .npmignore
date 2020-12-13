@@ -1,0 +1,29 @@
+lib/
+dist/cache/
+
+#tests
+test
+coverage
+
+#build tools
+.travis.yml
+.jenkins.yml
+.codeclimate.yml
+
+#linters
+.jscsrc
+.jshintrc
+.eslintrc*
+
+#editor settings
+.idea
+.editorconfig
+tsconfig.json
+
+.vscode
+*.ignore.*
+
+config/*.json
+cache/*.json
+tokens/*.json
+exports/*.xml

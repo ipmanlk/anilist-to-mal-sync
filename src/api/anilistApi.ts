@@ -3,7 +3,7 @@ import { formatResponse } from "../util/format";
 import * as Cache from "../util/cache";
 import { AnilistRes } from "../types/anilist";
 
-const config = require(`${process.cwd()}/config/config.json`);
+const config = require(`${__dirname}/../../config/config.json`);
 
 const getRequestOptions = (type: "ANIME" | "MANGA") => {
 	const query = `query {

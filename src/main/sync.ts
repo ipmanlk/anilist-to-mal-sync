@@ -6,7 +6,7 @@ import { getData } from "../util/cache";
 import * as anilistApi from "../api/anilistApi";
 import * as malApi from "../api/malApi";
 
-const changesFilePath = `${process.cwd()}/cache/changes.json`;
+const changesFilePath = `${__dirname}/../../cache/changes.json`;
 
 export const startSync = async () => {
 	const oldCache = getData();

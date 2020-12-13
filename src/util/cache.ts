@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync, existsSync } from "fs";
 import { Cache } from "../types/cache";
 
-const cacheFilePath = `${process.cwd()}/cache/cache.json`;
+const cacheFilePath = `${__dirname}/../../cache/cache.json`;
 
 export const saveData = (data: Cache) => {
 	writeFileSync(cacheFilePath, JSON.stringify(data));

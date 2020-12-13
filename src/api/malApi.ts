@@ -54,7 +54,7 @@ export const deleteManga = async (entry: Media) => {
 
 const sendRequest = async (url: string, type: RequestType, data: any = {}) => {
 	const token = JSON.parse(
-		readFileSync(`${process.cwd()}/tokens/mal.json`, "utf8")
+		readFileSync(`${__dirname}/../../tokens/mal.json`, "utf8")
 	);
 
 	// test api to see if token has expired

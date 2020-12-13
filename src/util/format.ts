@@ -4,7 +4,7 @@ import { Media } from "../types/main";
 // @ts-ignore
 import { toXML } from "jstoxml";
 
-const config = require(`${process.cwd()}/config/config.json`);
+const config = require(`${__dirname}/../../config/config.json`);
 
 export const formatResponse = (
 	anilistResponse: AnilistResData,

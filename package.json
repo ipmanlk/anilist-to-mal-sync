@@ -8,8 +8,12 @@
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "bin": {
+    "malsync": "./dist/app.js"
+  },
+  "preferGlobal": true,
+  "author": "ipmanlk",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.0",
     "jstoxml": "^2.0.2",

@@ -5,9 +5,9 @@ import * as querystring from "querystring";
 import chalk from "chalk";
 
 const pkceChallenge = require("pkce-challenge");
-const config = require(`${process.cwd()}/config/config.json`);
+const config = require(`${__dirname}/../../config/config.json`);
 
-const tokenFilePath = `${process.cwd()}/tokens/mal.json`;
+const tokenFilePath = `${__dirname}/../../tokens/mal.json`;
 
 // client info from https://myanimelist.net/apiconfig
 const clientId = config.mal.clientId;
@@ -105,13 +105,13 @@ export const authenticate = async () => {
 		)} ${getAuthenticationUrl()}\n\n`
 	);
 
-	console.log(chalk.yellow("Enter your authentication code: "));
-
 	// interface to get cli inputs
 	const rl = readline.createInterface({
 		input: process.stdin,
 		output: process.stdout,
 	});
+
+	console.log(chalk.yellow("Enter your authentication code: "));
 
 	// read cli input
 	const it = rl[Symbol.asyncIterator]();

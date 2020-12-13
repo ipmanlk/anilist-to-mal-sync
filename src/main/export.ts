@@ -5,7 +5,7 @@ import { getLists } from "../api/anilistApi";
 import { writeFileSync } from "fs";
 import { getMalXML } from "../util/format";
 
-const exportDir = `${process.cwd()}/exports`;
+const exportDir = `${__dirname}/../../exports`;
 
 export const exportLists = async () => {
 	let cache = Cache.getData();

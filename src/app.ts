@@ -1,3 +1,8 @@
+#!/usr/bin/env node
+import * as preferences from "./main/preferences";
+// check config file exits
+preferences.checkConfig();
+
 import chalk from "chalk";
 import * as yargs from "yargs";
 import * as anilistApi from "./api/anilistApi";
@@ -5,17 +10,25 @@ import * as malAuth from "./auth/malAuth";
 import { exportLists } from "./main/export";
 import { startSync } from "./main/sync";
 
-const config = require(`${process.cwd()}/config/config.json`);
+const config = require(`${__dirname}/../config/config.json`);
 
 // cli args for various actions
 const argv = yargs
-	.option("update", {
-		alias: "u",
-		description: "Update cache from AniList",
+	.option("set-user", {
+		description: "Set basic Anilist/MAL info",
+		type: "boolean",
+	})
+	.option("set-client", {
+		description: "Set basic Anilist/MAL info",
 		type: "boolean",
 	})
 	.option("login", {
 		description: "Login to MyAnimeList",
+		type: "boolean",
+	})
+	.option("update", {
+		alias: "u",
+		description: "Update cache from AniList",
 		type: "boolean",
 	})
 	.option("export", {
@@ -33,6 +46,14 @@ const argv = yargs
 	})
 	.version(false)
 	.alias("help", "h").argv;
+
+if (argv["set-user"]) {
+	preferences.setUserInfo();
+}
+
+if (argv["set-client"]) {
+	preferences.setClientInfo();
+}
 
 if (argv["update"]) {
 	anilistApi
