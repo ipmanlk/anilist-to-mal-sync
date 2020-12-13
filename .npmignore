@@ -26,4 +26,3 @@ tsconfig.json
 config/*.json
 cache/*.json
 tokens/*.json
-exports/*.xml

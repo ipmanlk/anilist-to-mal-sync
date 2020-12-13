@@ -48,8 +48,5 @@ cache/*
 tokens/*
 !tokens/.gitkeep
 
-exports/*
-!exports/.gitkeep
-
 config/*
 !config/.gitkeep
