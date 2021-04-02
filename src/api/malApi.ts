@@ -29,7 +29,10 @@ export const updateAnime = async (entry: Media) => {
 };
 
 export const deleteAnime = async (entry: Media) => {
-	await sendRequest(`/anime/${entry.id}/my_list_status`, "DELETE");
+	await sendRequest(
+		`https://api.myanimelist.net/v2/anime/${entry.id}/my_list_status`,
+		"DELETE"
+	);
 };
 
 export const updateManga = async (entry: Media) => {
