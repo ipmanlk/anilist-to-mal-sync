@@ -87,7 +87,7 @@ const sendRequest = async (url: string, type: RequestType, data: any = {}) => {
 	const res = await fetch(url, requestOptions);
 	const resData = await res.json();
 
-	if (res.status == 200) {
+	if (res.status == 200 || res.status == 404) {
 		return true;
 	} else {
 		throw resData;
