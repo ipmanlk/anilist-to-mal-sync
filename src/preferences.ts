@@ -2,7 +2,7 @@ import * as readline from "readline";
 import chalk from "chalk";
 import { existsSync, readFileSync, writeFileSync } from "fs";
 
-const configFilePath = `${__dirname}/../../config/config.json`;
+const configFilePath = `${__dirname}/../config/config.json`;
 
 export const setUserInfo = async () => {
 	checkConfig();
@@ -14,7 +14,7 @@ export const setUserInfo = async () => {
 
 	const it = rl[Symbol.asyncIterator]();
 
-	console.log(chalk.yellow("Enter your AniList Username: "));
+	console.log(chalk.greenBright("Enter your AniList Username: "));
 	const anilistUsername = await (await it.next()).value;
 
 	if (!anilistUsername || anilistUsername.trim() == "") {
@@ -23,7 +23,7 @@ export const setUserInfo = async () => {
 		return;
 	}
 
-	console.log(chalk.yellow("Enter your MAL Username: "));
+	console.log(chalk.greenBright("Enter your MAL Username: "));
 	const malUsername = await (await it.next()).value;
 
 	if (!malUsername || malUsername.trim() == "") {
@@ -39,7 +39,7 @@ export const setUserInfo = async () => {
 	writeFileSync(configFilePath, JSON.stringify(config));
 
 	rl.close();
-	console.log(chalk.green("User has been configured!."));
+	console.log(chalk.greenBright("User has been configured!."));
 };
 
 export const setClientInfo = async () => {
@@ -52,7 +52,7 @@ export const setClientInfo = async () => {
 
 	const it = rl[Symbol.asyncIterator]();
 
-	console.log(chalk.yellow("Enter your MAL Client ID: "));
+	console.log(chalk.greenBright("Enter your MAL Client ID: "));
 	const clientId = await (await it.next()).value;
 
 	if (!clientId || clientId.trim() == "") {
@@ -61,7 +61,7 @@ export const setClientInfo = async () => {
 		return;
 	}
 
-	console.log(chalk.yellow("Enter your MAL Client Secret: "));
+	console.log(chalk.greenBright("Enter your MAL Client Secret: "));
 	const clientSecret = await (await it.next()).value;
 
 	if (!clientSecret || clientSecret.trim() == "") {
@@ -77,7 +77,7 @@ export const setClientInfo = async () => {
 	writeFileSync(configFilePath, JSON.stringify(config));
 
 	rl.close();
-	console.log(chalk.green("MAL Client has been configured!."));
+	console.log(chalk.greenBright("MAL Client has been configured!."));
 };
 
 // creates when config file doesn't exist

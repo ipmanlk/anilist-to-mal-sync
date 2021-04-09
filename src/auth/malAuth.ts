@@ -100,7 +100,7 @@ export const refreshToken = async (): Promise<void> => {
 
 export const authenticate = async () => {
 	console.log(
-		`${chalk.yellow(
+		`${chalk.greenBright(
 			"Please visit this URL and get your authentication code:"
 		)} ${getAuthenticationUrl()}\n\n`
 	);
@@ -111,7 +111,7 @@ export const authenticate = async () => {
 		output: process.stdout,
 	});
 
-	console.log(chalk.yellow("Enter your authentication code: "));
+	console.log(chalk.greenBright("Enter your authentication code: "));
 
 	// read cli input
 	const it = rl[Symbol.asyncIterator]();
@@ -125,7 +125,7 @@ export const authenticate = async () => {
 
 	generateAndSaveToken(authenticationCode)
 		.then(() => {
-			console.log(chalk.green("Token as been generated!."));
+			console.log(chalk.greenBright("Token as been generated!."));
 		})
 		.catch(() => {
 			console.log(chalk.redBright("Failed to generate a token!."));

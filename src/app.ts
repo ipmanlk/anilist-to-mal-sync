@@ -1,14 +1,13 @@
 #!/usr/bin/env node
-import * as preferences from "./main/preferences";
+import * as preferences from "./preferences";
+import * as yargs from "yargs";
+import * as malAuth from "./auth/malAuth";
+import * as exporter from "./exporter";
+import * as sync from "./sync";
+import chalk from "chalk";
+
 // check config file exits
 preferences.checkConfig();
-
-import chalk from "chalk";
-import * as yargs from "yargs";
-import * as anilistApi from "./api/anilistApi";
-import * as malAuth from "./auth/malAuth";
-import { exportLists } from "./main/export";
-import { startSync } from "./main/sync";
 
 const config = require(`${__dirname}/../config/config.json`);
 
@@ -24,11 +23,6 @@ const argv = yargs
 	})
 	.option("login", {
 		description: "Login to MyAnimeList",
-		type: "boolean",
-	})
-	.option("update", {
-		alias: "u",
-		description: "Update cache from AniList",
 		type: "boolean",
 	})
 	.option("export", {
@@ -55,27 +49,16 @@ if (argv["set-client"]) {
 	preferences.setClientInfo();
 }
 
-if (argv["update"]) {
-	anilistApi
-		.getLists()
-		.then(() => {
-			console.log(chalk.green("Anilist cache has been updated!."));
-		})
-		.catch((e) => {
-			console.log(e);
-		});
-}
-
 if (argv["login"]) {
 	malAuth.authenticate();
 }
 
 if (argv["export"]) {
-	exportLists();
+	exporter.exportLists();
 }
 
 if (argv["sync"]) {
-	startSync().catch((e) => console.log(e));
+	sync.syncToMal().catch((e) => console.log(e));
 }
 
 // config.syncDelay should be in minutes
@@ -83,9 +66,9 @@ if (argv["watch"]) {
 	console.log(chalk.cyanBright("Press Ctrl+C to exit"));
 
 	// initial sync
-	startSync().catch((e) => console.log(e));
+	sync.syncToMal().catch((e) => console.log(e));
 
 	setInterval(() => {
-		startSync().catch((e) => console.log(e));
+		sync.syncToMal().catch((e) => console.log(e));
 	}, config.syncDelay * 60000);
 }
