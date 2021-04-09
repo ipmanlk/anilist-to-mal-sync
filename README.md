@@ -17,49 +17,45 @@ $ npm install -g anilist-to-mal-sync
 
 ### Usage
 #### Basic Setup
-1. Run ```malsync --help``` in your terminal or cmd to see help.
+1. Run ```ani2mal --help``` in your terminal or cmd to see help.
 2. Set basic information as below. This is required to export your anilists.  
 ```bash
-$ malsync --set-user
+$ ani2mal --set-user
 
 # After setting your usernames run below command to make sure everything is working.
 
-$ malsync --update
+$ ani2mal --update
 ```
 
 #### Sync Setup **(Optional)**
 1. To sync your Anilist updates to MAL, you need to create a MAL Client. Follow this guide for instructions: [Authorization flow for the new MAL API using OAuth 2.0](https://myanimelist.net/blog.php?eid=835707).
 2. After creating a client, set your client id and secret as below.
 ```
-$ malsync --set-client
+$ ani2mal --set-client
 ```
 5. Then, authorize your client.
 ```bash
-$ malsync --login
+$ ani2mal --login
 ```
 6. That's it. Now you can sync your Anilist updates to MAL easily.
 
 ### Examples
-- Update local Anilist cache.
-```bash
-$ malsync --update
-```
 - Export anime & manga lists.
 
 ```bash
-$ malsync --export
+$ ani2mal --export
 ```
 - Login to MAL **(Required for Sync feature)**.
 ```bash
-$ malsync --login
+$ ani2mal --login
 ```
 - Sync changes.
 ```bash
-$ malsync --sync
+$ ani2mal --sync
 ```
 - Monitor and Sync changes.
 ```bash
-$ malsync --watch
+$ ani2mal --watch
 ```
 
 

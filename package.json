@@ -1,35 +1,35 @@
 {
-  "name": "anilist-to-mal-sync",
-  "version": "1.0.0",
-  "description": "Export / Sync your Anilist to MAL.",
-  "main": "index.js",
+  "name": "ani2mal",
+  "version": "2.0.0",
+  "description": "Export / Sync your Anilist to MyAnimeList.",
   "scripts": {
     "start": "tsc && node dist/app.js",
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "bin": {
-    "malsync": "./dist/app.js"
+    "ani2mal": "./dist/app.js"
   },
+  "keywords": [],
   "preferGlobal": true,
   "author": "ipmanlk",
   "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.0",
-    "jstoxml": "^2.0.2",
+    "jstoxml": "^2.0.4",
     "node-fetch": "^2.6.1",
     "pkce-challenge": "^2.1.0",
     "yargs": "^16.2.0"
   },
   "devDependencies": {
-    "@types/node": "^14.14.12",
-    "@types/node-fetch": "^2.5.7",
-    "@types/yargs": "^15.0.11",
-    "@typescript-eslint/eslint-plugin": "^4.9.1",
-    "@typescript-eslint/parser": "^4.5.0",
-    "eslint": "^7.15.0",
-    "eslint-config-prettier": "^7.0.0",
-    "typescript": "^4.1.3"
+    "@types/node": "^14.14.37",
+    "@types/node-fetch": "^2.5.9",
+    "@types/yargs": "^16.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
+    "eslint": "^7.23.0",
+    "eslint-config-prettier": "^8.1.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
   },
   "repository": {
     "type": "git",
