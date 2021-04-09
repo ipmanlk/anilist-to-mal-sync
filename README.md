@@ -12,7 +12,7 @@ _Export / Sync your Anilist to MAL._
 ### Installation
 1. Install as a global module.
 ```
-$ npm install -g anilist-to-mal-sync
+$ npm install -g ani2mal
 ```
 
 ### Usage

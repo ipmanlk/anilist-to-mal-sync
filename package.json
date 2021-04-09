@@ -4,7 +4,8 @@
   "description": "Export / Sync your Anilist to MyAnimeList.",
   "scripts": {
     "start": "tsc && node dist/app.js",
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "npm run build"
   },
   "bin": {
     "ani2mal": "./dist/app.js"
@@ -31,6 +32,12 @@
     "ts-node": "^9.1.1",
     "typescript": "^4.2.3"
   },
+  "files": [
+    "dist/**/*",
+    "tokens/.gitkeep",
+    "data/.gitkeep",
+    "config/.gitkeep"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ipmanlk/anilist-to-mal-sync.git"
