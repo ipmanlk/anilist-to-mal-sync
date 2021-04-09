@@ -3,6 +3,7 @@ import chalk from "chalk";
 import { existsSync, readFileSync, writeFileSync } from "fs";
 
 const configFilePath = `${__dirname}/../config/config.json`;
+const excludesFilePath = `${__dirname}/../data/excludes.json`;
 
 export const setUserInfo = async () => {
 	checkConfig();
@@ -97,5 +98,9 @@ export const checkConfig = () => {
 				syncDelay: 30,
 			})
 		);
+	}
+
+	if (!existsSync(excludesFilePath)) {
+		writeFileSync(excludesFilePath, "[]");
 	}
 };
