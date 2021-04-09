@@ -50,3 +50,6 @@ tokens/*
 
 config/*
 !config/.gitkeep
+
+data/*
+!data/.gitkeep
