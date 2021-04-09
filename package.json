@@ -1,6 +1,6 @@
 {
   "name": "ani2mal",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Export / Sync your Anilist to MyAnimeList.",
   "scripts": {
     "start": "tsc && node dist/app.js",

@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 import * as preferences from "./preferences";
+
+// check config files exists
+preferences.checkConfig();
+
 import * as yargs from "yargs";
 import * as malAuth from "./auth/malAuth";
 import * as exporter from "./exporter";
 import * as sync from "./sync";
 import chalk from "chalk";
-
-// check config file exits
-preferences.checkConfig();
 
 const config = require(`${__dirname}/../config/config.json`);
 
