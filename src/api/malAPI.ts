@@ -142,18 +142,6 @@ const sendRequest = async (
 
 	const excludesFile = JSON.parse(readFileSync(excludesFilePath, "utf8"));
 
-	// test api to see if token has expired
-	const testRes = await fetch("https://api.myanimelist.net/v2/users/@me", {
-		headers: {
-			Authorization: `Bearer ${token.access_token}`,
-		},
-	});
-
-	if (testRes.status == 401) {
-		await malAuth.refreshToken();
-	}
-
-	// options for making the request
 	const requestOptions: RequestOptions = {
 		method: type,
 		headers: {
@@ -167,6 +155,13 @@ const sendRequest = async (
 	if (type == "GET" || type == "DELETE") delete requestOptions.body;
 
 	const res = await fetch(url, requestOptions);
+
+	if (res.status == 401) {
+		await malAuth.refreshToken();
+		await sendRequest(url, type, mediaId, data);
+		return;
+	}
+
 	const resData = await res.json();
 
 	if (res.status == 200) {
@@ -178,5 +173,5 @@ const sendRequest = async (
 		writeFileSync(excludesFilePath, JSON.stringify(excludesFile));
 	}
 
-	throw resData;
+	throw new Error(resData);
 };
