@@ -1,9 +1,11 @@
 import * as readline from "readline";
 import chalk from "chalk";
-import { existsSync, readFileSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import { getConfigDirectory } from "./util";
 
-const configFilePath = `${__dirname}/../config/config.json`;
-const excludesFilePath = `${__dirname}/../data/excludes.json`;
+const configDirectory = getConfigDirectory();
+const configFilePath = `${configDirectory}/config.json`;
+const excludesFilePath = `${configDirectory}/excludes.json`;
 
 export const setUserInfo = async () => {
 	checkConfig();
@@ -81,8 +83,11 @@ export const setClientInfo = async () => {
 	console.log(chalk.greenBright("MAL Client has been configured!."));
 };
 
-// creates when config file doesn't exist
 export const checkConfig = () => {
+	if (!existsSync(configDirectory)) {
+		mkdirSync(configDirectory);
+	}
+
 	if (!existsSync(configFilePath)) {
 		writeFileSync(
 			configFilePath,

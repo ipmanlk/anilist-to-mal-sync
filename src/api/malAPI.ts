@@ -4,9 +4,11 @@ import * as querystring from "querystring";
 import { MALResponse, RequestOptions, RequestType } from "../types";
 import { Media, Datum } from "../types";
 import { readFileSync, writeFileSync } from "fs";
+import { getConfigDirectory } from "../util";
 
-const excludesFilePath = `${__dirname}/../../data/excludes.json`;
-const tokenPath = `${__dirname}/../../tokens/mal.json`;
+const configDirectory = getConfigDirectory();
+const excludesFilePath = `${configDirectory}/excludes.json`;
+const tokenFilePath = `${configDirectory}/mal_token.json`;
 
 const malStatuses = {
 	plan_to_watch: "planning",
@@ -138,7 +140,7 @@ const sendRequest = async (
 	mediaId: number | undefined = undefined,
 	data: any = {}
 ) => {
-	const token = JSON.parse(readFileSync(tokenPath, "utf8"));
+	const token = JSON.parse(readFileSync(tokenFilePath, "utf8"));
 
 	const excludesFile = JSON.parse(readFileSync(excludesFilePath, "utf8"));
 

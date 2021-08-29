@@ -3,11 +3,13 @@ import { existsSync, readFileSync, writeFileSync } from "fs";
 import * as readline from "readline";
 import * as querystring from "querystring";
 import chalk from "chalk";
+import { getConfigDirectory } from "../util";
 
 const pkceChallenge = require("pkce-challenge");
-const config = require(`${__dirname}/../../config/config.json`);
 
-const tokenFilePath = `${__dirname}/../../tokens/mal.json`;
+const configDirectory = getConfigDirectory();
+const config = require(`${configDirectory}/config.json`);
+const tokenFilePath = `${configDirectory}/mal_token.json`;
 
 // client info from https://myanimelist.net/apiconfig
 const clientId = config.mal.clientId;

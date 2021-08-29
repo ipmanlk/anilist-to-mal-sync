@@ -4,8 +4,7 @@ import { writeFileSync } from "fs";
 import { FormattedAnilistData } from "./types";
 // @ts-ignore
 import { toXML } from "jstoxml";
-
-const config = require(`${__dirname}/../config/config.json`);
+import { getConfigDirectory } from "./util";
 
 export const exportLists = async () => {
 	const currentDir = process.cwd();
@@ -24,6 +23,8 @@ export const exportLists = async () => {
 };
 
 const getMalXML = (data: FormattedAnilistData) => {
+	const config = require(`${getConfigDirectory()}/config.json`);
+
 	const animeEntries = data.anime.list.map((i) => {
 		return {
 			anime: {

@@ -6,9 +6,11 @@ import {
 	FormattedAnilistData,
 } from "../types";
 import { readFileSync } from "fs";
+import { getConfigDirectory } from "../util";
 
-const excludesFilePath = `${__dirname}/../../data/excludes.json`;
-const config = require(`${__dirname}/../../config/config.json`);
+const configDirectory = getConfigDirectory();
+const excludesFilePath = `${configDirectory}/excludes.json`;
+const config = require(`${configDirectory}/config.json`);
 
 const getRequestOptions = (type: "ANIME" | "MANGA") => {
 	const query = `query {

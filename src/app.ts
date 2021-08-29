@@ -8,9 +8,8 @@ import * as yargs from "yargs";
 import * as malAuth from "./auth/malAuth";
 import * as exporter from "./exporter";
 import * as sync from "./sync";
+import { getConfigDirectory } from "./util";
 import chalk from "chalk";
-
-const config = require(`${__dirname}/../config/config.json`);
 
 // cli args for various actions
 const argv = yargs
@@ -65,6 +64,8 @@ if (argv["sync"]) {
 // config.syncDelay should be in minutes
 if (argv["watch"]) {
 	console.log(chalk.cyanBright("Press Ctrl+C to exit"));
+
+	const config = require(`${getConfigDirectory()}/config.json`);
 
 	// initial sync
 	sync.syncToMal().catch((e) => console.log(e));
