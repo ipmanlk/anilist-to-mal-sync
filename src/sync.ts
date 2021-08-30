@@ -95,14 +95,14 @@ const syncChanges = async (changes: Changes) => {
 };
 
 export const syncToMal = async () => {
-	chalk.greenBright("Retrieving Anillist updates...");
-	const changes = await getChanges();
+	console.log(chalk.greenBright("Retrieving Anillist updates..."));
 
+	const changes = await getChanges();
 	const totalUpdates = changes.anime.totalChanges + changes.manga.totalChanges;
 
 	if (totalUpdates > 0) {
 		console.log(chalk.yellow("Total updates: ", totalUpdates));
-		chalk.greenBright("Syncing changes...");
+		console.log(chalk.greenBright("Syncing changes..."));
 		await syncChanges(changes);
 	} else {
 		console.log(chalk.greenBright("No new updates found."));
