@@ -6,13 +6,12 @@ import {
 	FormattedAnilistData,
 } from "../types";
 import { readFileSync } from "fs";
-import { getConfigDirectory } from "../util";
-
-const configDirectory = getConfigDirectory();
-const excludesFilePath = `${configDirectory}/excludes.json`;
-const config = require(`${configDirectory}/config.json`);
+import { getConfigPaths } from "../util";
 
 const getRequestOptions = (type: "ANIME" | "MANGA") => {
+	const { configFilePath } = getConfigPaths();
+	const config = JSON.parse(readFileSync(configFilePath, "utf8"));
+
 	const query = `query {
     MediaListCollection(userName: "${config.anilist.username}", type: ${type}) {
       lists {
@@ -67,6 +66,8 @@ export const getLists = async (): Promise<FormattedAnilistData> => {
 };
 
 const formatAnilistResponse = (anilistResponse: AnilistResData) => {
+	const { excludesFilePath } = getConfigPaths();
+
 	let totPlanning = 0,
 		totCurrent = 0,
 		totCompleted = 0,

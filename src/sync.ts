@@ -104,6 +104,7 @@ export const syncToMal = async () => {
 		console.log(chalk.yellow("Total updates: ", totalUpdates));
 		console.log(chalk.greenBright("Syncing changes..."));
 		await syncChanges(changes);
+		console.log(chalk.greenBright("Syncing completed."));
 	} else {
 		console.log(chalk.greenBright("No new updates found."));
 	}

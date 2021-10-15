@@ -1,14 +1,12 @@
 import fetch from "node-fetch";
+import chalk from "chalk";
 import * as malAuth from "../auth/malAuth";
 import * as querystring from "querystring";
 import { MALResponse, RequestOptions, RequestType } from "../types";
 import { Media, Datum } from "../types";
-import { readFileSync, writeFileSync } from "fs";
-import { getConfigDirectory } from "../util";
-
-const configDirectory = getConfigDirectory();
-const excludesFilePath = `${configDirectory}/excludes.json`;
-const tokenFilePath = `${configDirectory}/mal_token.json`;
+import { existsSync, readFileSync, writeFileSync } from "fs";
+import { getConfigPaths } from "../util";
+import { exit } from "process";
 
 const malStatuses = {
 	plan_to_watch: "planning",
@@ -140,7 +138,14 @@ const sendRequest = async (
 	mediaId: number | undefined = undefined,
 	data: any = {}
 ) => {
-	const token = JSON.parse(readFileSync(tokenFilePath, "utf8"));
+	const { malTokenPath, excludesFilePath } = getConfigPaths();
+
+	if (!existsSync(malTokenPath)) {
+		console.log(chalk.redBright("Please login to MAL first."));
+		exit();
+	}
+
+	const token = JSON.parse(readFileSync(malTokenPath, "utf8"));
 
 	const excludesFile = JSON.parse(readFileSync(excludesFilePath, "utf8"));
 

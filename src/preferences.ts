@@ -1,14 +1,13 @@
 import * as readline from "readline";
 import chalk from "chalk";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
-import { getConfigDirectory } from "./util";
-
-const configDirectory = getConfigDirectory();
-const configFilePath = `${configDirectory}/config.json`;
-const excludesFilePath = `${configDirectory}/excludes.json`;
+import { getConfigPaths } from "./util";
 
 export const setUserInfo = async () => {
 	checkConfig();
+
+	const { configFilePath } = getConfigPaths();
+
 	// interface to get cli inputs
 	const rl = readline.createInterface({
 		input: process.stdin,
@@ -47,6 +46,9 @@ export const setUserInfo = async () => {
 
 export const setClientInfo = async () => {
 	checkConfig();
+
+	const { configFilePath } = getConfigPaths();
+
 	// interface to get cli inputs
 	const rl = readline.createInterface({
 		input: process.stdin,
@@ -84,8 +86,11 @@ export const setClientInfo = async () => {
 };
 
 export const checkConfig = () => {
-	if (!existsSync(configDirectory)) {
-		mkdirSync(configDirectory);
+	const { configDirectoryPath, configFilePath, excludesFilePath } =
+		getConfigPaths();
+
+	if (!existsSync(configDirectoryPath)) {
+		mkdirSync(configDirectoryPath);
 	}
 
 	if (!existsSync(configFilePath)) {
