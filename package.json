@@ -1,48 +1,45 @@
 {
   "name": "ani2mal",
-  "version": "2.2.0",
-  "description": "Export / Sync your Anilist to MyAnimeList.",
-  "scripts": {
-    "start": "./node_modules/typescript/bin/tsc && node dist/app.js",
-    "build": "./node_modules/typescript/bin/tsc",
-    "prepare": "npm run build"
+  "version": "3.0.0",
+  "description": "AniList → MyAnimeList sync — AniList is the source of truth, MAL is the mirror.",
+  "type": "module",
+  "packageManager": "pnpm@11.22.0",
+  "engines": {
+    "node": ">=22"
   },
   "bin": {
-    "ani2mal": "./dist/app.js"
+    "ani2mal": "dist/cli.js"
   },
-  "keywords": [],
-  "preferGlobal": true,
-  "author": "ipmanlk",
-  "license": "MIT",
+  "exports": {
+    ".": "./dist/cli.js"
+  },
+  "main": "./dist/cli.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check ./src ./tests",
+    "format": "biome format --write ./src ./tests",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
   "dependencies": {
-    "chalk": "^4.1.0",
-    "jstoxml": "^2.0.4",
-    "node-fetch": "^2.6.1",
-    "yargs": "^16.2.0"
+    "commander": "^14.0.2",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
-    "@types/node": "^14.14.37",
-    "@types/node-fetch": "^2.5.9",
-    "@types/yargs": "^16.0.1",
-    "@typescript-eslint/eslint-plugin": "^4.20.0",
-    "@typescript-eslint/parser": "^4.20.0",
-    "eslint": "^7.23.0",
-    "eslint-config-prettier": "^8.1.0",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.2.3"
-  },
-  "files": [
-    "dist/**/*",
-    "tokens/.gitkeep",
-    "data/.gitkeep",
-    "config/.gitkeep"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ipmanlk/anilist-to-mal-sync.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ipmanlk/anilist-to-mal-sync/issues"
-  },
-  "homepage": "https://github.com/ipmanlk/anilist-to-mal-sync#readme"
+    "@types/node": "^24.3.1",
+    "@vitest/coverage-v8": "^4.1.11",
+    "biome": "npm:@biomejs/biome@2.2.4",
+    "fast-xml-parser": "^5.2.5",
+    "msw": "^2.11.3",
+    "tsup": "^8.5.0",
+    "typescript": "^7.0.2",
+    "vitest": "^4.0.13"
+  }
 }

@@ -1,0 +1,27 @@
+name: ci
+on:
+  push: {}
+  pull_request: {}
+  workflow_dispatch: {}
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: |
+          if grep -R -E "from ['\"]node:|import.*node:" src/domain; then echo "✖ domain imports node:"; exit 1; fi
+          echo "✓ domain purity ok"
+      - run: pnpm test
+      - run: pnpm build
+      - run: node dist/cli.js --version
+      - run: node dist/cli.js --help
+      - run: npm pack --dry-run 2>&1 | grep -q "dist/cli.js"
+      - run: ANI2MAL_CONFIG_DIR=/tmp/ci-test node dist/cli.js sync --dry-run 2>&1 | grep -q "anilist.username"

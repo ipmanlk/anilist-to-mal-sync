@@ -1,0 +1,6 @@
+[tools]
+node = "24.18.0"
+pnpm = "11.22.0"
+
+[env]
+ANI2MAL_CONFIG_DIR = "./.tmp/ani2mal-dev"

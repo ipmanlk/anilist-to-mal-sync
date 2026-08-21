@@ -1,61 +1,68 @@
-## Anilist-to-MAL-Sync
-_Export / Sync your Anilist to MAL._
+# ani2mal — AniList → MyAnimeList Sync
 
-### Features
-- Export Anilist anime/manga lists to MAL compatible XML format.
-- Sync Anilist updates to MAL automatically.
+> AniList is the source of truth, MAL is the mirror.
 
-### Prerequisites
-- Node.js 12 or above.
-- NPM.
+`ani2mal` mirrors your AniList anime and manga lists to MyAnimeList. One direction, no magic, fully previewable.
 
-### Installation
-1. Install as a global module.
-```
-$ npm install -g ani2mal
-```
-
-### Usage
-#### Basic Setup
-1. Run ```ani2mal --help``` in your terminal or cmd to see help.
-2. Set basic information as below. This is required to export your anilists.  
-```bash
-$ ani2mal --set-user
-
-# After setting your usernames run below command to make sure everything is working.
-
-$ ani2mal --update
-```
-
-#### Sync Setup **(Optional)**
-1. To sync your Anilist updates to MAL, you need to create a MAL Client. Follow this guide for instructions: [Authorization flow for the new MAL API using OAuth 2.0](https://myanimelist.net/blog.php?eid=835707).
-2. After creating a client, set your client id and secret as below.
-```
-$ ani2mal --set-client
-```
-5. Then, authorize your client.
-```bash
-$ ani2mal --login
-```
-6. That's it. Now you can sync your Anilist updates to MAL easily.
-
-### Examples
-- Export anime & manga lists.
+## Install
 
 ```bash
-$ ani2mal --export
-```
-- Login to MAL **(Required for Sync feature)**.
-```bash
-$ ani2mal --login
-```
-- Sync changes.
-```bash
-$ ani2mal --sync
-```
-- Monitor and Sync changes.
-```bash
-$ ani2mal --watch
+npm install -g ani2mal
+# or one-shot
+npx ani2mal --help
 ```
 
+Requires Node 22 or newer (Node 24 LTS recommended).
 
+## Quick start
+
+```bash
+# Export without any MAL account — produces MAL-importer XML
+npx ani2mal export --username Jimmy123 --out ./mal-import
+
+# Sync (needs MAL OAuth once)
+ani2mal config set anilist.username=Jimmy123 mal.clientId=YOUR_CLIENT_ID
+ani2mal login
+ani2mal sync --dry-run --json | jq .
+ani2mal sync
+```
+
+## Commands
+
+```
+ani2mal config get            Print resolved config (secrets redacted)
+ani2mal config set <k=v>...   Set anilist.username | mal.clientId | mal.clientSecret
+ani2mal config path           Print config directory
+ani2mal login [--no-open]     MAL OAuth (PKCE S256)
+ani2mal logout                Delete token + pkce files
+ani2mal export --username <name> --out <dir> [--mal-username <n>] [--type a|m|both] [--force]
+ani2mal sync [--prune] [--dry-run] [--limit <n>] [--only a|m]
+ani2mal watch --interval <time> [sync flags]
+ani2mal exclude list|add|rm <id>...
+```
+
+Global options: `--config-dir <path>` `--json` `--quiet` `--verbose` `--non-interactive`
+
+## Fresh install (no migration from 2.x)
+
+`ani2mal` 3.0 is a new product. If you used 2.x, install 3.0 fresh and re-run:
+
+```bash
+ani2mal config set anilist.username=... mal.clientId=... mal.clientSecret=...
+ani2mal login
+```
+
+No config file is migrated — 3.0 starts clean by design.
+
+## Exit codes
+
+| Code | Meaning |
+|------|---------|
+| 0 | Success, no-op, cancelled, --help/--version |
+| 2 | Usage, config, auth |
+| 3 | Network / API failure after retries |
+| 10 | Partial sync — some writes failed |
+
+## License
+
+MIT

@@ -1,0 +1,14 @@
+{
+  "data": [
+    {
+      "node": { "id": 501, "title": "M1", "num_chapters": 50 },
+      "list_status": {
+        "status": "reading",
+        "score": 8,
+        "num_chapters_read": 10,
+        "is_rereading": false
+      }
+    }
+  ],
+  "paging": {}
+}

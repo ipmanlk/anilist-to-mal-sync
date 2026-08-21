@@ -1,0 +1,6 @@
+{
+  "data": [],
+  "paging": {
+    "next": "https://api.myanimelist.net/v2/users/@me/mangalist?fields=list_status&limit=1000&offset=1000&nsfw=true"
+  }
+}
