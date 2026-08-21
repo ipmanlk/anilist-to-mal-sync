@@ -1,0 +1,26 @@
+{
+  "data": [
+    {
+      "node": { "id": 1, "title": "A", "num_episodes": 12 },
+      "list_status": {
+        "status": "watching",
+        "score": 8,
+        "num_episodes_watched": 5,
+        "is_rewatching": false
+      }
+    },
+    {
+      "node": { "id": 2, "title": "B", "num_episodes": 12 },
+      "list_status": {
+        "status": "completed",
+        "score": 10,
+        "num_episodes_watched": 12,
+        "is_rewatching": true,
+        "num_times_rewatched": 1
+      }
+    }
+  ],
+  "paging": {
+    "next": "https://api.myanimelist.net/v2/users/@me/animelist?fields=list_status&limit=1000&offset=1000&nsfw=true"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "data": {
+    "MediaListCollection": {
+      "lists": [
+        {
+          "name": "Reading",
+          "status": "CURRENT",
+          "isCustomList": false,
+          "isSplitCompletedList": false,
+          "entries": [
+            {
+              "id": 10,
+              "status": "CURRENT",
+              "score": 8,
+              "progress": 10,
+              "progressVolumes": null,
+              "repeat": 0,
+              "media": {
+                "idMal": 101,
+                "episodes": null,
+                "chapters": 50,
+                "title": { "romaji": "M1", "english": "M1" }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

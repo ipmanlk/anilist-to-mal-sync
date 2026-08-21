@@ -1,0 +1,10 @@
+[tools]
+node = "lts"
+pnpm = "latest"
+"npm:typescript" = "latest"
+"npm:biome" = "latest"
+"npm:vitest" = "latest"
+"npm:tsup" = "latest"
+
+[env]
+ANI2MAL_CONFIG_DIR = "./.tmp/ani2mal-dev"

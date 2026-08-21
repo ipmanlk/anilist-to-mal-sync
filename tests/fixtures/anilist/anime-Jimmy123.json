@@ -1,0 +1,80 @@
+{
+  "data": {
+    "MediaListCollection": {
+      "lists": [
+        {
+          "name": "Watching",
+          "status": "CURRENT",
+          "isCustomList": false,
+          "isSplitCompletedList": false,
+          "entries": [
+            {
+              "id": 1,
+              "status": "CURRENT",
+              "score": 8,
+              "progress": 5,
+              "progressVolumes": null,
+              "repeat": 0,
+              "media": {
+                "idMal": 1,
+                "episodes": 12,
+                "chapters": null,
+                "title": { "romaji": "A", "english": "A" }
+              }
+            },
+            {
+              "id": 2,
+              "status": "COMPLETED",
+              "score": 9.5,
+              "progress": 12,
+              "progressVolumes": null,
+              "repeat": 1,
+              "media": {
+                "idMal": 2,
+                "episodes": 12,
+                "chapters": null,
+                "title": { "romaji": "B", "english": "B" }
+              }
+            },
+            {
+              "id": 3,
+              "status": "PLANNING",
+              "score": 0,
+              "progress": 0,
+              "progressVolumes": null,
+              "repeat": 0,
+              "media": {
+                "idMal": null,
+                "episodes": 24,
+                "chapters": null,
+                "title": { "romaji": "C", "english": "C" }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Completed",
+          "status": "COMPLETED",
+          "isCustomList": false,
+          "isSplitCompletedList": false,
+          "entries": [
+            {
+              "id": 4,
+              "status": "COMPLETED",
+              "score": 7,
+              "progress": 24,
+              "progressVolumes": null,
+              "repeat": 0,
+              "media": {
+                "idMal": 3,
+                "episodes": 24,
+                "chapters": null,
+                "title": { "romaji": "D", "english": "D" }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
